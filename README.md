@@ -1,19 +1,19 @@
 # nik.sh
 
-Интерактивный каталог подсайтов `*.nik.sh`, работающий на чистом Python без обязательных зависимостей.
+An interactive directory of `*.nik.sh` websites, powered by dependency-free Python.
 
-## Запуск
+## Run
 
 ```powershell
 python app.py
 ```
 
-Откройте `http://127.0.0.1:8000`. Порт можно изменить переменной окружения `PORT`.
+Open `http://127.0.0.1:8000`. Set the `PORT` environment variable to use a different port.
 
-## Каталог
+## Directory
 
 - `mail.nik.sh`
 - `sms.nik.sh`
 - `2fa.nik.sh`
 - `eclipse.nik.sh`
-- `guides.nik.sh` ([исходники](https://github.com/github-is-shit-site/guides))
+- `guides.nik.sh` ([source](https://github.com/github-is-shit-site/guides))
