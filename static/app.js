@@ -47,7 +47,7 @@ function renderCommands(query = "") {
       <span><strong>${escapeHTML(site.name)}</strong><small>${escapeHTML(new URL(site.url).host)}</small></span>
       <kbd>${escapeHTML(site.shortcut)}</kbd>
     </button>
-  `).join("") || '<div class="command-option">Нет совпадений</div>';
+  `).join("") || '<div class="command-option">No matches</div>';
 }
 
 function openCommand() {
@@ -72,7 +72,7 @@ fetch("/api/sites")
     renderCommands();
   })
   .catch(() => {
-    grid.innerHTML = '<div class="loading-card">Сеть временно недоступна. Обновите страницу.</div>';
+    grid.innerHTML = '<div class="loading-card">The directory is temporarily unavailable. Refresh the page.</div>';
   });
 
 search.addEventListener("input", (event) => renderCards(filterSites(event.target.value)));

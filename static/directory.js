@@ -12,7 +12,9 @@ fetch("/api/sites")
     grid.innerHTML = sites.map((site, index) => `
       <a class="site-card" href="${escapeHTML(site.url)}" style="--accent:${escapeHTML(site.accent)}">
         <div class="site-card-top">
-          <span class="site-symbol" aria-hidden="true">${escapeHTML(site.symbol)}</span>
+          <span class="site-symbol">
+            <img src="${escapeHTML(site.icon)}" alt="" width="160" height="160" />
+          </span>
           <span class="site-index">${String(index + 1).padStart(2,"0")} / ${String(sites.length).padStart(2,"0")}</span>
         </div>
         <div class="site-card-bottom">
