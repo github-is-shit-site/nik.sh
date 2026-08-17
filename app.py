@@ -12,20 +12,9 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
-ASSET_VERSION = "20260817.2"
+ASSET_VERSION = "20260817.3"
 
 SITES = [
-    {
-        "id": "mail",
-        "name": "Mail",
-        "url": "https://mail.nik.sh",
-        "description": "Webmail for nik.sh accounts: read, compose, reply to, search, and organize email directly in the browser.",
-        "icon": f"/icons/mail.png?v={ASSET_VERSION}",
-        "symbol": "@",
-        "accent": "#ff5c35",
-        "tags": ["email", "communication"],
-        "shortcut": "M",
-    },
     {
         "id": "sms",
         "name": "SMS",
@@ -70,6 +59,17 @@ SITES = [
         "accent": "#ffc857",
         "tags": ["guides", "knowledge"],
         "shortcut": "G",
+    },
+    {
+        "id": "mail",
+        "name": "Mail",
+        "url": "https://mail.nik.sh",
+        "description": "Webmail for nik.sh accounts: read, compose, reply to, search, and organize email directly in the browser.",
+        "icon": f"/icons/mail.png?v={ASSET_VERSION}",
+        "symbol": "@",
+        "accent": "#ff5c35",
+        "tags": ["email", "communication"],
+        "shortcut": "M",
     },
 ]
 
