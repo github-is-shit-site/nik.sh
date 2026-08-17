@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="description" content="nik.sh — каталог маленьких полезных сервисов." />
+    <title>nik.sh — сеть маленьких сервисов</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="nik.sh — наверх">
+        <span class="brand-mark">N</span>
+        <span>nik.sh</span>
+      </a>
+      <nav aria-label="Основная навигация">
+        <a href="#network">Сеть</a>
+        <a href="#manifesto">Идея</a>
+      </nav>
+      <button class="command-trigger" type="button" aria-label="Открыть быстрый переход">
+        <span>Быстрый переход</span><kbd>⌘ K</kbd>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="eyebrow"><span class="pulse"></span> 5 узлов в сети</div>
+        <h1 id="hero-title">Маленькие сайты.<br /><span>Большая польза.</span></h1>
+        <p class="hero-copy">Одна точка входа в коллекцию инструментов nik.sh — без лишних экранов, регистраций и шума.</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#network">Исследовать сеть <span>↓</span></a>
+          <button class="shuffle-action" type="button"><span>✦</span> Случайный сайт</button>
+        </div>
+
+        <div class="orbit" aria-hidden="true">
+          <div class="orbit-ring orbit-ring-one"></div>
+          <div class="orbit-ring orbit-ring-two"></div>
+          <div class="orbit-core"><span>N</span></div>
+          <span class="satellite satellite-a">@</span>
+          <span class="satellite satellite-b">02</span>
+          <span class="satellite satellite-c">↗</span>
+        </div>
+      </section>
+
+      <section class="network" id="network" aria-labelledby="network-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">01 / КАТАЛОГ</p>
+            <h2 id="network-title">Выберите узел</h2>
+          </div>
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only">Поиск по каталогу</span>
+            <input id="site-search" type="search" placeholder="Найти сервис..." autocomplete="off" />
+            <kbd>/</kbd>
+          </label>
+        </div>
+
+        <div class="site-grid" id="site-grid" aria-live="polite">
+          <div class="loading-card">Подключаемся к сети<span>...</span></div>
+        </div>
+        <p class="empty-state" hidden>Ничего не найдено. Попробуйте другое слово.</p>
+      </section>
+
+      <section class="manifesto" id="manifesto" aria-labelledby="manifesto-title">
+        <p class="section-kicker">02 / ЗАЧЕМ</p>
+        <div class="manifesto-layout">
+          <h2 id="manifesto-title">Интернет снова может быть <em>личным.</em></h2>
+          <div class="manifesto-copy">
+            <p>nik.sh — это созвездие небольших сайтов. Каждый решает одну задачу и не пытается стать всем сразу.</p>
+            <div class="principles">
+              <span>01<small>Одна задача</small></span>
+              <span>02<small>Быстрый доступ</small></span>
+              <span>03<small>Ноль шума</small></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="brand footer-brand" href="#top"><span class="brand-mark">N</span><span>nik.sh</span></a>
+      <p>Сделано для людей и открытого веба.</p>
+      <p class="local-time"><span class="status-dot"></span><span id="clock">--:--:--</span> / ONLINE</p>
+    </footer>
+
+    <dialog class="command-menu">
+      <div class="command-head">
+        <span>⌕</span>
+        <input type="search" placeholder="Куда перейти?" aria-label="Поиск сайта для перехода" />
+        <button type="button" aria-label="Закрыть">ESC</button>
+      </div>
+      <div class="command-results" role="listbox"></div>
+      <p class="command-help"><span>↑↓ выбрать</span><span>↵ открыть</span><span>esc закрыть</span></p>
+    </dialog>
+
+    <noscript>Для интерактивного каталога нужен JavaScript.</noscript>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
