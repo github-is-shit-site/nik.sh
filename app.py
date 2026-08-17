@@ -12,6 +12,7 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 STATIC = ROOT / "static"
+ASSET_VERSION = "20260817.2"
 
 SITES = [
     {
@@ -19,7 +20,7 @@ SITES = [
         "name": "Mail",
         "url": "https://mail.nik.sh",
         "description": "Webmail for nik.sh accounts: read, compose, reply to, search, and organize email directly in the browser.",
-        "icon": "/icons/mail.png",
+        "icon": f"/icons/mail.png?v={ASSET_VERSION}",
         "symbol": "@",
         "accent": "#ff5c35",
         "tags": ["email", "communication"],
@@ -30,7 +31,7 @@ SITES = [
         "name": "SMS",
         "url": "https://sms.nik.sh",
         "description": "Order temporary or permanent virtual phone numbers, receive SMS in real time, and send supported SMS or fax messages. Includes account balance and USDT top-ups.",
-        "icon": "/icons/sms.png",
+        "icon": f"/icons/sms.png?v={ASSET_VERSION}",
         "symbol": "//",
         "accent": "#b6ff5c",
         "tags": ["messages", "phone"],
@@ -41,7 +42,7 @@ SITES = [
         "name": "2FA",
         "url": "https://2fa.nik.sh",
         "description": "An encrypted vault for TOTP, HOTP, and Steam Guard codes. Share an authenticator through revocable, time-limited links or grant temporary access to another user.",
-        "icon": "/icons/2fa.png",
+        "icon": f"/icons/2fa.png?v={ASSET_VERSION}",
         "symbol": "02",
         "accent": "#57d6ff",
         "tags": ["codes", "security"],
@@ -52,7 +53,7 @@ SITES = [
         "name": "Eclipse",
         "url": "https://eclipse.nik.sh",
         "description": "Explore all 453 solar eclipses from 1926 to 2126 on an interactive 3D Earth, animate the Moon’s shadow, and calculate local obscuration and contact times.",
-        "icon": "/icons/eclipse.png",
+        "icon": f"/icons/eclipse.png?v={ASSET_VERSION}",
         "symbol": "◒",
         "accent": "#9c7cff",
         "tags": ["tools", "projects"],
@@ -64,7 +65,7 @@ SITES = [
         "url": "https://guides.nik.sh",
         "source": "https://github.com/github-is-shit-site/guides",
         "description": "Source-backed city guides for New York, Los Angeles, and Paris with curated landmarks, 3D maps, practical notes, media galleries, neighborhood search, and day-route planning.",
-        "icon": "/icons/guides.png",
+        "icon": f"/icons/guides.png?v={ASSET_VERSION}",
         "symbol": "↗",
         "accent": "#ffc857",
         "tags": ["guides", "knowledge"],
@@ -79,7 +80,7 @@ class SiteHandler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:  # noqa: N802 — stdlib handler API
         path = urlparse(self.path).path
         if path == "/api/sites":
-            self._send_json({"sites": SITES, "count": len(SITES)})
+            self._send_json({"sites": SITES, "count": len(SITES), "version": ASSET_VERSION})
             return
         if path == "/api/health":
             self._send_json({"ok": True, "service": "nik.sh"})
@@ -101,7 +102,13 @@ class SiteHandler(SimpleHTTPRequestHandler):
     def end_headers(self) -> None:
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "strict-origin-when-cross-origin")
-        self.send_header("Cache-Control", "no-cache" if self.path == "/" else "public, max-age=3600")
+        request_path = urlparse(self.path).path
+        if request_path.startswith("/api/") or request_path in {"/", "/index.html"}:
+            self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+            self.send_header("Pragma", "no-cache")
+            self.send_header("Expires", "0")
+        else:
+            self.send_header("Cache-Control", "public, max-age=31536000, immutable")
         super().end_headers()
 
     def _send_json(self, payload: dict) -> None:
